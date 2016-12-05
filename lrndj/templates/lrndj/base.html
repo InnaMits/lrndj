@@ -1,6 +1,5 @@
  {% load staticfiles %}
 <html>
-
 <head>
   <title>FIRST BLOGE</title>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -8,12 +7,12 @@
   <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/lrndj.css' %}">
 </head>
-
 <body>
   <div class="page-header">
-    {% if user.is_authenticated %}
+ {% if user.is_authenticated %}
+    {% if perms.post.add_post %}
     <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
-    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>{% endif %}
     <a href="{% url 'logout' %}" class="top-menu"><span class="glyphicon glyphicon-off"></span></a> {% else %}
     <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a> {% endif %}
     <h1><a href="/">Django KIRUSHIN Blog</a></h1>
@@ -26,5 +25,4 @@
     </div>
   </div>
 </body>
-
 </html>

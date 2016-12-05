@@ -4,23 +4,24 @@
   <div class="date">
     {{ post.published_date }}
   </div>
-  {% else %}
-  <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a> {% endif %} {% if user.is_authenticated %}
+  {% else %}{% if user.is_authenticated %}{% if perms.post.add_post %}
+  <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a> {% endif %}{% endif %}{% endif %} {% if user.is_authenticated %}{% if perms.post.add_post %}
   <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-  <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> {% endif %}
+  <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> {% endif %}{% endif %}
   <h1>{{ post.title }}</h1>
   <p>{{ post.text|linebreaksbr }}</p>
 </div>
 <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
-<hr> {% for comment in post.comments.all %} {% if user.is_authenticated %}
+<hr> {% for comment in post.comments.all %} {% if user.is_authenticated %}{% if perms.comment.delete_comment %}
 <div class="comment">
   <div class="date">{{ comment.created_date }}
     <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove" </span></a>
   </div>
-  {% endif %} 
+  {% endif %}
+  {% endif %}
   <strong>{{ comment.author }}</strong>
   <p>{{ comment.text|linebreaks }}</p>
   {% empty %}
-<p>No comments here yet :(</p>
+  <p>No comments here yet :(</p>
 </div>
 {% endfor %} {% endblock %}

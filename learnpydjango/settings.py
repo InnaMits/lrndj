@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lrndj',
-    'registration',
 ]
 
 MIDDLEWARE = [
@@ -126,11 +125,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+#LOGOUT_REDIRECT_URL = '/'
 ALLOWED_HOSTS = ['django-fordota12800661.codeanyapp.com']
-ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_OPEN = True
-REGISTRATION_AUTO_LOGIN = True
+#ACCOUNT_ACTIVATION_DAYS = 7
+#REGISTRATION_OPEN = True
+#REGISTRATION_AUTO_LOGIN = True
 
 # Email settings
 AUTH_USER_EMAIL_UNIQUE = True

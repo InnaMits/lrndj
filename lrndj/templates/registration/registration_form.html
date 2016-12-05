@@ -1,16 +1,14 @@
-{% extends "lrndj/base.html" %}
-{% block content %}
+{% extends "lrndj/base.html" %} {% block content %}
 <h1>REGISTRATION</h1>
-<form method="post" action="">
-<dl class="register">
-{% for field in form %}
-    <dt>{{ field.label_tag }}</dt>
-    <dd class="clearfix">{{ field }}
-    {% if field.help_text %}<div class="clearfix">{{ field.help_text }}</div>{% endif %}
-    {% if field.errors %}<div class="myerrors clearfix">{{ field.errors }}</div>{% endif %}
-    </dd>
-{% endfor %}
-</dl>
-<input type="submit" value="Sign In" / class="clearfix">
+<form method="post" action=".">
+  <dl class="register">
+    {% if form.error_dict %}
+    <p class="error">You have some errors here.</p>
+    {% endif %} {% if form.username.errors %} {{ form.username.html_error_list }} {% endif %} {% for field in form %}
+    <label for="id_username">Login:</label> {{ form.username }}
+    <dt>{{ field.label_tag }}</dt> {% if form.password1.errors %} {{ form.password1.html_error_list }} {% endif %}
+    <label for="id_password1">Password:</label> {{ form.password1 }} {% if form.password2.errors %} {{ form.password2.html_error_list }} {% endif %}
+    <label for="id_password2">Repeat password:</label> {{ form.password2 }}
+    <input type="submit" value="Sign Up" />
 </form>
 {% endblock %}

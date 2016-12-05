@@ -1,6 +1,6 @@
-{% extends 'lrndj/base.html' %} {% block content %}
+{% extends 'lrndj/base.html' %} {% block content %}{% if perms.post.add_post %}
 <h1>New post</h1>
 <form method="POST" class="post-form">{% csrf_token %} {{ form.as_p }}
   <button type="submit" class="save btn btn-default">Save</button>
-</form>
+</form>{% endif %}
 {% endblock %}
